@@ -61,7 +61,10 @@ for filename in sorted(os.listdir("icon-svg")):
         svg = open(icon, 'r').read()
 
         # Parse SVG as XML
-        xml = parseString(svg)
+        try:
+            xml = parseString(svg)
+        except Exception as e:
+            print("Error parsing XML for icon %s : %s" % (icon, e))
 
         icon_name = Path(icon).stem
         try:
